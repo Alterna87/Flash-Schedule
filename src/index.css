@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App-title {
+  font-family: 'Jua', sans-serif;
+  color: #28a745;
+  margin-top: 2em;
+}
+
+.btn-google {
+    margin-top: 13em;
+}
