@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import UploadFile from './UploadFile';
 import './App.css';
+import Navigation from './components/Navigation';
 
 class App extends Component {
   constructor() {
@@ -10,10 +11,11 @@ class App extends Component {
       user: null,
       uploadValue: 0,
       pictures : []
-    };
+    }
     // Instansear Objetos
+
     this.handleAuth = this.handleAuth.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
+
     this.handleUpload = this.handleUpload.bind(this);
 
   }
@@ -35,11 +37,7 @@ componentWillMount() {
     .then(result => console.log(`${result.user.email} ha iniciado sesion`))
     .catch(error => console.log(`Error ${error.code}: ${error.message}`));
   }
-  handleLogout() {
-    firebase.auth().signOut()
-    .then(result => console.log(`${result.user.email} ha salido`))
-    .catch(error => console.log(`Error ${error.code}: ${error.message}`));
-  }
+
 
   handleUpload (event) {
     const file = event.target.files[0];
@@ -72,18 +70,17 @@ componentWillMount() {
     if (this.state.user) {
       return (
         <div>
-        <img width='100' src = {this.state.user.photoURL } alt = {this.state.displayName} />
-        <p>Hola {this.state.user.displayName } </p>
-        <button className='btn btn-primary' onClick={this.handleLogout}>Log Out</button>
-        <UploadFile onUpload = { this.handleUpload } uploadValue={this.state.uploadValue}/>
+        <Navigation onUser = { this.state.user.displayName } onPicture = { this.state.user.photoURL } />
+
+        <UploadFile onUpload = { this.handleUpload } uploadValue = { this.state.uploadValue } />
         {
           this.state.pictures.map(picture => (
             <div>
-            <img src = {picture.image}/>
+            <img src = { picture.image } />
             <br/>
-            <img  width='100' src= {picture.photoURL} alt ={picture.displayName} />
+            <img  width='100' src= { picture.photoURL } alt = { picture.displayName } />
             <br/>
-            <span>{picture.displayName}</span>
+            <span>{ picture.displayName }</span>
             </div>
           )).reverse()
         }
@@ -92,20 +89,22 @@ componentWillMount() {
       // si no está logueado
     } else {
       return(
+        <section>
+        <section className="row App-header">
+        <h1 className="col-sm-12 col-lg-12 col-xl-12 text-center App-title ">Flash Schedule</h1>
+        <h5 className="col-sm-12 col-lg-12 col-xl-12 text-center text-type">"Un lugar donde organizar tu día"</h5>
+        </section>
       <button className='btn btn-outline-danger col-sm-12 col-lg-6 offset-lg-3 btn-google' onClick={this.handleAuth}>Login con Google</button>
+      </section>
     );
   };
   }
   render() {
     return (
       <div className="App container-fluid">
-        <header className="row App-header">
-        <h1 className="col-sm-12 col-lg-6 col-xl-6 offset-xl-5 App-title">Flash Schedule</h1>
-        <h5 className="col-sm-12 col-lg-12 col-xl-12 text-center">"Un lugar donde te organizamos tu día"</h5>
-        </header>
-        <p className="App-intro">
+
           { this.loginButton() }
-        </p>
+
       </div>
     );
   }

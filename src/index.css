@@ -10,6 +10,22 @@ body {
   margin-top: 2em;
 }
 
+.logo {
+  font-family: 'Jua', sans-serif;
+  font-size: 2em;
+  margin: 5px;
+}
+.bg-nav {
+  background-color: #00BCD4;
+}
 .btn-google {
     margin-top: 13em;
+}
+
+.text-type {
+  font-family: 'Jua', sans-serif;
+}
+
+.margin-s {
+  margin: 5px;
 }
