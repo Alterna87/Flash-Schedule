@@ -29,3 +29,7 @@ body {
 .margin-s {
   margin: 5px;
 }
+
+.card-size {
+  width: 18rem;
+}

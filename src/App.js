@@ -72,20 +72,26 @@ componentWillMount() {
         <div>
         <Navigation onUser = { this.state.user.displayName } onPicture = { this.state.user.photoURL } />
 
+
+        <div className= 'row'>
         <UploadFile onUpload = { this.handleUpload } uploadValue = { this.state.uploadValue } />
-        {
+          {
           this.state.pictures.map(picture => (
-            <div>
-            <img src = { picture.image } />
-            <br/>
-            <img  width='100' src= { picture.photoURL } alt = { picture.displayName } />
-            <br/>
-            <span>{ picture.displayName }</span>
+            <div className = 'card col-md-2 margin-s'>
+            <img className= 'card-img-top' src = { picture.image } alt="Card image cap"/>
+            <div className ="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+            </div>
             </div>
           )).reverse()
         }
         </div>
+
+        </div>
       );
+
       // si no está logueado
     } else {
       return(
