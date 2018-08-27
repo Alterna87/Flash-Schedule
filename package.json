@@ -2,6 +2,7 @@
   "name": "flash-schedule",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alterna87.github.io/Flash-Schedule/public/index.html",
   "dependencies": {
     "firebase": "^5.4.0",
     "react": "^16.4.2",
